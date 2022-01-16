@@ -30,7 +30,7 @@ function Menu({
     </ul>
   )
 }
-// 🐨 Memoize the Menu here using React.memo
+Menu = React.memo(Menu)
 
 function ListItem({
   getItemProps,
@@ -56,7 +56,13 @@ function ListItem({
     />
   )
 }
-// 🐨 Memoize the ListItem here using React.memo
+ListItem = React.memo(ListItem, (preProps, nextProps) => {
+  return (
+    preProps.highlightedIndex === nextProps.highlightedIndex
+    // preProps.index === nextProps.index &&
+    // preProps.selectedItem.id === nextProps.selectedItem.id
+  )
+})
 
 function App() {
   const forceRerender = useForceRerender()
